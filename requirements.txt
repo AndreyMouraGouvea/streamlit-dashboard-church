@@ -1,8 +1,4 @@
-random
 streamlit
 pandas
-datetime
-openpyxl 
+openpyxl
 fpdf
-io
-os
