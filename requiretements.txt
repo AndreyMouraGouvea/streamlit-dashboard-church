@@ -1,0 +1,8 @@
+random
+streamlit
+pandas
+date
+openpyxl 
+fpdf
+io
+os
