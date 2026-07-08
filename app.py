@@ -17,9 +17,6 @@ DIA_SEMANA_PT = {
 
 POSTOS_PADRAO = ["Porta", "Rua", "Banheiro (MASC)", "Púlpito"]
 
-FONT_ARIAL = "C:\\Windows\\Fonts\\arial.ttf"
-FONT_ARIAL_BOLD = "C:\\Windows\\Fonts\\arialbd.ttf"
-
 
 def nome_mes(m: int) -> str:
     meses = [
@@ -201,8 +198,6 @@ def criar_pdf_bytes(
     grupos = agrupar_por_data(linhas_escala, postos)
 
     pdf = FPDF(orientation="L", unit="mm", format="A4")
-    pdf.add_font("Arial", "", FONT_ARIAL)
-    pdf.add_font("Arial", "B", FONT_ARIAL_BOLD)
     pdf.set_auto_page_break(auto=True, margin=10)
 
     W = 297
@@ -212,18 +207,18 @@ def criar_pdf_bytes(
 
     pdf.add_page()
 
-    pdf.set_font("Arial", "B", 16)
+    pdf.set_font("Helvetica", "B", 16)
     pdf.cell(0, 10, "ESCALA DE TRABALHO", new_x="LMARGIN", new_y="NEXT", align="C")
-    pdf.set_font("Arial", "B", 12)
+    pdf.set_font("Helvetica", "B", 12)
     pdf.cell(0, 8, f"{nome_mes(mes)}/{ano}", new_x="LMARGIN", new_y="NEXT", align="C")
     dias_texto = " / ".join(DIA_SEMANA_PT[d] for d in sorted(weekdays))
-    pdf.set_font("Arial", "B", 10)
+    pdf.set_font("Helvetica", "B", 10)
     pdf.cell(0, 8, dias_texto, new_x="LMARGIN", new_y="NEXT", align="C")
     pdf.ln(5)
 
     def cabecalho():
         pdf.set_x(x0)
-        pdf.set_font("Arial", "B", 9)
+        pdf.set_font("Helvetica", "B", 9)
         pdf.set_fill_color(0, 62, 126)
         pdf.set_text_color(255, 255, 255)
         for i, h in enumerate(["DATA"] + [p.upper() for p in postos]):
@@ -240,7 +235,7 @@ def criar_pdf_bytes(
 
         txt = f"{item['Data'].strftime('%d/%m/%Y')} ({item['DiaSemana'].upper()})"
         pdf.set_x(x0)
-        pdf.set_font("Arial", "", 8)
+        pdf.set_font("Helvetica", "", 8)
         pdf.cell(col_w[0], 7, txt, border=1, align="C")
         for i, posto in enumerate(postos):
             pdf.cell(col_w[i + 1], 7, item.get(posto, ""), border=1, align="C")
