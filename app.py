@@ -243,10 +243,10 @@ def criar_pdf_bytes(
             pdf.cell(col_w[i + 1], 7, item.get(posto, ""), border=1, align="C")
         pdf.ln()
 
-    buf = BytesIO()
-    pdf.output(buf)
-    buf.seek(0)
-    return buf.read()
+    result = pdf.output(dest='S')
+    if isinstance(result, str):
+        result = result.encode('latin-1')
+    return result
 
 
 # ── Session state ──
