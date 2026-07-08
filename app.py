@@ -208,12 +208,12 @@ def criar_pdf_bytes(
     pdf.add_page()
 
     pdf.set_font("Helvetica", "B", 16)
-    pdf.cell(0, 10, "ESCALA DE TRABALHO", new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 10, "ESCALA DE TRABALHO", ln=1, align="C")
     pdf.set_font("Helvetica", "B", 12)
-    pdf.cell(0, 8, f"{nome_mes(mes)}/{ano}", new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 8, f"{nome_mes(mes)}/{ano}", ln=1, align="C")
     dias_texto = " / ".join(DIA_SEMANA_PT[d] for d in sorted(weekdays))
     pdf.set_font("Helvetica", "B", 10)
-    pdf.cell(0, 8, dias_texto, new_x="LMARGIN", new_y="NEXT", align="C")
+    pdf.cell(0, 8, dias_texto, ln=1, align="C")
     pdf.ln(5)
 
     def cabecalho():
