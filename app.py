@@ -3,12 +3,14 @@ import streamlit as st
 import pandas as pd
 from datetime import date, timedelta, datetime
 from openpyxl import Workbook
+from openpyxl.utils import get_column_letter
 from openpyxl.styles import Font, Alignment, PatternFill, Border, Side
 from fpdf import FPDF
 from io import BytesIO
 import os
 
 st.set_page_config(page_title="Gerador de Escala", layout="wide")
+st.set_option("client.showErrorDetails", True)
 
 DIA_SEMANA_PT = {
     0: "Segunda", 1: "Terça", 2: "Quarta", 3: "Quinta",
@@ -137,7 +139,7 @@ def criar_excel_bytes(
     ws.column_dimensions["A"].width = 4
     ws.column_dimensions["B"].width = 18
     for idx in range(len(postos)):
-        ws.column_dimensions[chr(67 + idx)].width = 22
+        ws.column_dimensions[get_column_letter(3 + idx)].width = 22
 
     last_col = 2 + len(postos)
 
